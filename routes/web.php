@@ -17,3 +17,10 @@ Route::resource('loans', LoanController::class);
 
 Route::put('/loans/{id}/kembalikan', [LoanController::class, 'kembalikan'])
     ->name('loans.kembalikan');
+
+// Route Group Prefix Admin (Tugas Pertemuan 2)
+Route::prefix('admin')->group(function () {
+    Route::get('/info', function () {
+        return 'Halaman Informasi Admin Perpustakaan';
+    })->name('admin.info');
+});
