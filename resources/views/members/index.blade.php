@@ -5,6 +5,8 @@
 @section('content')
     <h1>Daftar Anggota</h1>
 
+    <p><a href="{{ route('members.create') }}" class="btn">+ Tambah Anggota</a></p>
+
     <table>
         <thead>
             <tr>
