@@ -1,16 +1,16 @@
 <?php
 //member controller dianalogikan seperti seorang petugas administrasi yang bertugas mengelola data anggota perpustakaan
-namespace App\Http\Controllers;
+    namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMemberRequest;
-use App\Models\Member;
-use Illuminate\Http\Request;
+    use App\Http\Requests\StoreMemberRequest;
+    use App\Models\Member;
+    use Illuminate\Http\Request;
 
-class MemberController extends Controller
-{
-    public function index(Request $request)
+    class MemberController extends Controller
     {
-        $search = $request->query('search');
+        public function index(Request $request)
+        {
+            $search = $request->query('search');
 
         $members = Member::when($search, function ($query, $search) {
             return $query->where('nama', 'like', "%{$search}%");
@@ -36,7 +36,8 @@ class MemberController extends Controller
 
     public function show(string $id)
     {
-        $member = Member::findOrFail($id);
+        $member = Member::with(['loans.loanItems.book', 'loans.user'])->findOrFail($id);
+
         return view('members.show', compact('member'));
     }
 

@@ -52,7 +52,6 @@
             @endforelse
         </tbody>
     </table>
-    </table>
 
     {{ $members->links() }}
 @endsection
